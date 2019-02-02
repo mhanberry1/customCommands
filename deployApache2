@@ -1,0 +1,11 @@
+#!/bin/bash
+
+hostPort=$1;
+
+# If an argument is not supplied, set $hostPort to 80
+if [ $# = 0 ]; then
+	hostPort=80;
+fi
+
+# Launch the apache2 container
+docker run --rm -d -v `pwd`:/var/www/localhost/htdocs -p $hostPort:80 apache2;

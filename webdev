@@ -1,0 +1,5 @@
+#!/bin/bash
+
+while true; do
+	deepls | entr -pd reload-browser Firefox
+done
