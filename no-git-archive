@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# If no argument was supplied print an error message and usage info
+if [ -z "$1" ]; then
+	echo "";
+	echo "Error: There was no argument supplied to $0.";
+	$0 -h;
+	exit 1;
+fi
+
+# If the -h or --help argument was supplied, print usage info
+if [ $1 = "-h" ] || [ $1 = "--help" ]; then
+	echo "";
+	echo "This utility will archive and compress all files and directories in the current directory."
+	echo "";
+	echo "Usage: $0 (-h | --help | <archiveName>)"
+	echo "";
+	exit 0;
+fi
+
+# Archive non-git files
+deepls | egrep -v -e '(\.git*|/\.{1,2}$)' | tar czvf "$1.tar.gz" -T -
